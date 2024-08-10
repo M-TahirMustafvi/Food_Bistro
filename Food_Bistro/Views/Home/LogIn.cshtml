@@ -1,0 +1,15 @@
+﻿@using Food_Bistro.Models
+@model Users
+
+<form method = post  action = "/Student/Submit" class="">
+
+           <label asp-for="Email"></label> <br />
+           <input asp-for="Email" /> <br />
+
+           <label asp-for="Password"></label> <br />
+           <input asp-for="Password"  /> <br />
+
+
+           <input type="submit" value="Submit" n/>
+
+       </form>
