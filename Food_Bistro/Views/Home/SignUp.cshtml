@@ -1,7 +1,7 @@
-﻿@using Food_Bistro.Models
+﻿@using Food_Bistro.Models.Classes
 @model Users
 
-       <form method = "post"  action = "">
+       <form method = "post"  action = "/Home/Index">
            <label asp-for="Name"></label> <br />
            <input asp-for="Name" /> <br />
 
@@ -12,5 +12,7 @@
            <input asp-for="Password"  />
 
            <input type="submit" value="Next" n/>
-
+           @ViewBag.Message
+           <br /><br />
+           Already on Bistro? <a asp-action="LogIn">LogIn </a>
        </form>

@@ -1,15 +1,26 @@
-﻿@using Food_Bistro.Models
+﻿@using Food_Bistro.Models.Classes
 @model Users
 
-<form method = post  action = "/Student/Submit" class="">
+@{
+    string mail = ViewContext.HttpContext.Request.Cookies["mail"];
 
-           <label asp-for="Email"></label> <br />
-           <input asp-for="Email" /> <br />
+    string pwd = ViewContext.HttpContext.Request.Cookies["pwd"];
 
-           <label asp-for="Password"></label> <br />
-           <input asp-for="Password"  /> <br />
+}
 
+<form method = "post"  action = "/Home/Login">
 
-           <input type="submit" value="Submit" n/>
+    <label asp-for="Email"></label> <br />
+    <input asp-for="Email"  value ="@mail"/> <br />
 
-       </form>
+    <label asp-for="Password"></label> <br />
+    <input asp-for="Password"   value ="@pwd"/> <br />
+
+    <input type="submit" value="Submit" n/>
+    @ViewBag.Message
+    <br /><br />
+    Nawa Aya Hain Sohnia? <a asp-action="Index">SignUp </a>
+
+ </form>
+
+       
