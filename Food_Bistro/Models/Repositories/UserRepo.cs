@@ -4,9 +4,11 @@ using Microsoft.Data.SqlClient;
 
 namespace Food_Bistro.Models.Repositories
 {
-    public class UserRepo : InterfaceUsers
+    public class UserRepo : IUsers
     {
         string conStr = "Data Source=(localdb)\\ProjectModels;Initial Catalog=FoodBistro;Integrated Security=True;Connect Timeout=30";
+
+        #region Login/Signup
         public bool addUser(Users usr)
         {
             if (!authUser(usr.Email))
@@ -32,24 +34,6 @@ namespace Food_Bistro.Models.Repositories
                 return false;
         }
 
-        public bool authUser(string mail)
-        {
-            using (SqlConnection con = new SqlConnection(conStr))
-            {
-                con.Open();
-
-                string cmdText = "SELECT COUNT(1) FROM Users WHERE Email = @mail";
-
-                using (SqlCommand cmd = new SqlCommand(cmdText, con))
-                {
-                    cmd.Parameters.AddWithValue("@mail", mail);
-                    int userCount = (int)cmd.ExecuteScalar();
-
-                    return userCount > 0;
-                }
-            }
-        }
-
         public bool authUser(string mail, string pwd)
         {
             using (SqlConnection con = new SqlConnection(conStr))
@@ -69,5 +53,30 @@ namespace Food_Bistro.Models.Repositories
                 }
             }
         }
+
+        #endregion
+
+
+        #region Helper
+
+        private bool authUser(string mail)
+        {
+            using (SqlConnection con = new SqlConnection(conStr))
+            {
+                con.Open();
+
+                string cmdText = "SELECT COUNT(1) FROM Users WHERE Email = @mail";
+
+                using (SqlCommand cmd = new SqlCommand(cmdText, con))
+                {
+                    cmd.Parameters.AddWithValue("@mail", mail);
+                    int userCount = (int)cmd.ExecuteScalar();
+
+                    return userCount > 0;
+                }
+            }
+        }
+
+        #endregion
     }
 }
