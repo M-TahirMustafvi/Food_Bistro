@@ -6,7 +6,7 @@
     <h2 class="text-center py-3 fw-bold" style="font-family: 'A Love of Thunder', Sans-serif; font-size: 54px; font-weight: 400;">Lets Eat</h2>
     <div class="row justify-content-start text-center p-4">
         <h1 class="text-start mb-5">BURGERS</h1>
-
+      
         @foreach (Product product in Model)
         {
             if (product.Category == "burger")
@@ -21,6 +21,7 @@
                             <a asp-action="Index" asp-controller="Cart" class="btn btn-primary btn-sm">Add To Cart</a>
                         </div>
                     </div>
+
                 </div>
             }
         }
@@ -33,6 +34,8 @@
         <h1 class="text-start mb-5">PIZZA</h1>
 
         <!-- Card 1 -->
+
+
         @foreach (Product product in Model)
         {
             if (product.Category == "pizza")
@@ -47,6 +50,7 @@
                             <a asp-action="Index" asp-controller="Cart" class="btn btn-primary btn-sm">Add To Cart</a>
                         </div>
                     </div>
+
                 </div>
             }
         }
