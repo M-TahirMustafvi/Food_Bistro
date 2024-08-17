@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Food_Bistro.Models.Classes;
+using Food_Bistro.Models.Repositories;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace Food_Bistro.Controllers
 {
@@ -6,7 +9,9 @@ namespace Food_Bistro.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            ProductRepo productsRepo = new ProductRepo();
+
+            return View(productsRepo.getAllProduct());
         }
     }
 }
