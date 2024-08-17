@@ -1,5 +1,11 @@
 ﻿@using Food_Bistro.Models.Classes;
 @model List<Product>;
+@{
+    if (!(string.IsNullOrEmpty(ViewContext.HttpContext.Session.GetString("UserName"))))
+        Layout = "_SessionLayout";
+
+    ViewBag.Title = "Shop";
+}
 
 
 <div class="container-fluid bg-light">

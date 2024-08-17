@@ -1,4 +1,9 @@
-﻿
+﻿@{
+    if (!(string.IsNullOrEmpty(ViewContext.HttpContext.Session.GetString("UserName"))))
+        Layout = "_SessionLayout";
+
+    ViewBag.Title = "Food Bistro";
+}
 
 
 

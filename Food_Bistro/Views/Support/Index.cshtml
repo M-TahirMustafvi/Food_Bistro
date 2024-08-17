@@ -1,4 +1,10 @@
-﻿
+﻿@{
+    if (!(string.IsNullOrEmpty(ViewContext.HttpContext.Session.GetString("UserName"))))
+        Layout = "_SessionLayout";
+
+    ViewBag.Title = "Support";
+}
+
 <div class="d-flex justify-content-center align-items-center vh-100 bg-light">
         <div class="card p-4 shadow">
             <h2 class="text-center mb-4">Send Us a Message</h2>

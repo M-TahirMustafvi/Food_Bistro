@@ -7,68 +7,54 @@ namespace Food_Bistro.Controllers
 {
 	public class AdminController : Controller
 	{
-
-		public ViewResult AdminView()
-		{ 
-			return View(); 
-		}
-
 		//private readonly IAdminRepo _adminRepo;
 
 		//public AdminController(IAdminRepo adminRepo)
 		//{
 		//	_adminRepo = adminRepo;
 		//}
-		//public IActionResult Index()
-		//{
-		//	return View("SignUp");
-		//}
+        public IActionResult Index()
+        {
+            ProductRepo productRepo = new ProductRepo();
+            return View(productRepo.getAllProduct());
+        }
 
-		//[HttpPost]
-		//public IActionResult Index(Admins admin)
-		//{
-		//	if (!HttpContext.Request.Cookies.ContainsKey("mail"))
-		//	{
-		//		if (!string.IsNullOrEmpty(admin.Name))
-		//			HttpContext.Response.Cookies.Append("name", admin.Name);
 
-		//		if (!string.IsNullOrEmpty(admin.Email))
-		//			HttpContext.Response.Cookies.Append("mail", admin.Email);
+		public IActionResult AddProduct()
+		{
+			return View();
+		}
 
-		//	}
 
-		//	if (_adminRepo.Add(admin))
-		//		return RedirectToAction("Index", "Home");
+		[HttpPost]
+		public IActionResult AddProduct(Product product)
+		{
+			ProductRepo productsRepo = new ProductRepo();
+			productsRepo.addProduct(product);
+			return View("Index",productsRepo.getAllProduct());
+		}
 
-		//	ViewBag.Message = "*Email already registered!";
-		//	return View("SignUp");
-		//}
 
-		//[HttpGet]
-		//public IActionResult LogIn()
-		//{
-		//	return View();
-		//}
+		public IActionResult DeleteProduct(int id)
+		{
+            ProductRepo productsRepo = new ProductRepo();
+			productsRepo.removeProduct(id);
+            return View("Index", productsRepo.getAllProduct());
+		}
 
-		//[HttpPost]
-		//public IActionResult LogIn(String Email, String Password)
-		//{
+		public IActionResult EditProduct(int id)
+		{
+            ProductRepo product = new ProductRepo();
+            
+            return View("EditProduct", product.getProductById(id));
+        }
 
-		//	if (!HttpContext.Request.Cookies.ContainsKey("mail"))
-		//	{
-		//		CookieOptions option = new CookieOptions();
-		//		option.Expires = System.DateTime.Now.AddDays(2);
-
-		//		if (!string.IsNullOrEmpty(Email))
-		//			HttpContext.Response.Cookies.Append("mail", Email, option);
-
-		//	}
-
-		//	if (_adminRepo.AuthAdmin(Email, Password))
-		//		return RedirectToAction("Index", "Home");
-
-		//	ViewBag.Message = "*Wrong Authentication Details!";
-		//	return View("LogIn");
-		//}
-	}
+        [HttpPost]
+        public IActionResult EditProduct(Product product)
+        {
+            ProductRepo productsRepo = new ProductRepo();
+            productsRepo.updateProduct(product);
+            return View("Index", productsRepo.getAllProduct());
+        }
+    };
 }

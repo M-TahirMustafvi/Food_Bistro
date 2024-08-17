@@ -3,15 +3,16 @@
 @model List<CartItem>
 @{
     var cartJson = ViewContext.HttpContext.Session.GetString("Cart");
-    List<CartItem> myModel;
+    List<CartItem>? myModel;
     if (!string.IsNullOrEmpty(cartJson))
-    {
         myModel = JsonSerializer.Deserialize<List<CartItem>>(cartJson);
-    }
     else
-    {
-        myModel = new List<CartItem>(); // Initialize an empty cart if no data is found
-    }
+        myModel = new List<CartItem>(); 
+
+    if (!(string.IsNullOrEmpty(ViewContext.HttpContext.Session.GetString("UserName"))))
+        Layout = "_SessionLayout";
+
+    ViewBag.Title = "Cart";
     
 }
 <div class="container">
