@@ -45,6 +45,7 @@ namespace Food_Bistro.Models.Repositories
 						while (reader.Read())
 						{
 							Product curr = new Product();
+                            curr.Id = reader.GetInt32(0);
 							curr.Name = reader.GetString(1);
 							curr.Price = reader.GetInt32(2);
 							curr.ImgUrl = reader.GetString(3);
@@ -75,7 +76,8 @@ namespace Food_Bistro.Models.Repositories
 						while (reader.Read())
 						{
 							Product curr = new Product();
-							curr.Name = reader.GetString(1);
+                            curr.Id = reader.GetInt32(0);
+                            curr.Name = reader.GetString(1);
 							curr.Price = reader.GetInt32(2);
 							curr.ImgUrl = reader.GetString(3);
 							curr.Quantity = reader.GetInt32(4);
@@ -106,6 +108,7 @@ namespace Food_Bistro.Models.Repositories
                         {
                             product = new Product
                             {
+                                Id = reader.GetInt32(0),
                                 Name = reader.GetString(1),
                                 Price = reader.GetInt32(2),
                                 ImgUrl = reader.GetString(3),
