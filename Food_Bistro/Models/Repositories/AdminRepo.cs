@@ -1,82 +1,61 @@
-﻿using Food_Bistro.Models.Classes;
-using Food_Bistro.Models.Interfaces;
-using Microsoft.Data.SqlClient;
+﻿//using Food_Bistro.Models.Classes;
+//using Food_Bistro.Models.Interfaces;
+//using Microsoft.Data.SqlClient;
 
-namespace Food_Bistro.Models.Repositories
-{
-	public class AdminRepo : IAdmins
-	{
-		string conStr = "Data Source=(localdb)\\ProjectModels;Initial Catalog=FoodBistro;Integrated Security=True;Connect Timeout=30";
-
-		#region Login/Signup
-		public bool addAdmin(Admins admin)
-		{
-			if (!authUser(admin.Email))
-			{
-				using (SqlConnection con = new SqlConnection(conStr))
-				{
-					con.Open();
-
-					string cmdText = "INSERT INTO Admins (Name, Email, Password) VALUES (@UserName, @Email, @Password)";
-
-					using (SqlCommand cmd = new SqlCommand(cmdText, con))
-					{
-						cmd.Parameters.AddWithValue("@UserName", admin.Name);
-						cmd.Parameters.AddWithValue("@Email", admin.Email);
-						cmd.Parameters.AddWithValue("@Password", admin.Password);
-
-						cmd.ExecuteNonQuery();
-					}
-				}
-				return true;
-			}
-			else
-				return false;
-		}
-
-		public bool authAdmin(string mail, string pwd)
-		{
-			using (SqlConnection con = new SqlConnection(conStr))
-			{
-				con.Open();
-
-				string cmdText = "SELECT COUNT(1) FROM Admins WHERE Email = @mail AND Password = @pwd";
-
-				using (SqlCommand cmd = new SqlCommand(cmdText, con))
-				{
-					cmd.Parameters.AddWithValue("@mail", mail);
-					cmd.Parameters.AddWithValue("@pwd", pwd);
-
-					int userCount = (int)cmd.ExecuteScalar();
-
-					return userCount > 0;
-				}
-			}
-		}
-
-		#endregion
+//namespace Food_Bistro.Models.Repositories
+//{
+//	public class AdminRepo : IAdminRepo
+//	{
+//		private readonly string _conStr = "Data Source=(localdb)\\ProjectModels;Initial Catalog=FoodBistro;Integrated Security=True;Connect Timeout=30;";
+//		public AdminRepo(string _conStr)  { }
 
 
-		#region Helper
+//		public bool AuthAdmin(string email, string password)
+//		{
+//			using (SqlConnection con = new SqlConnection(_conStr))
+//			{
+//				con.Open();
+//				string query = "SELECT COUNT(1) FROM Admins WHERE Email = @Email AND Password = @Password";
 
-		private bool authUser(string mail)
-		{
-			using (SqlConnection con = new SqlConnection(conStr))
-			{
-				con.Open();
+//				using (SqlCommand cmd = new SqlCommand(query, con))
+//				{
+//					cmd.Parameters.AddWithValue("@Email", email);
+//					cmd.Parameters.AddWithValue("@Password", password);
 
-				string cmdText = "SELECT COUNT(1) FROM Admins WHERE Email = @mail";
+//					int count = (int)cmd.ExecuteScalar();
+//					return count > 0;
+//				}
+//			}
+//		}
 
-				using (SqlCommand cmd = new SqlCommand(cmdText, con))
-				{
-					cmd.Parameters.AddWithValue("@mail", mail);
-					int userCount = (int)cmd.ExecuteScalar();
+//		//public bool Add(Admins admin)
+//		//{
+//		//	if (!AuthUser(admin.Email))
+//		//	{
+//		//		Add(admin);
+//		//		return true;
+//		//	}
+//		//	else
+//		//	{
+//		//		return false;
+//		//	}
+//		//}
 
-					return userCount > 0;
-				}
-			}
-		}
+//		private bool AuthUser(string email)
+//		{
+//			using (SqlConnection con = new SqlConnection(_conStr))
+//			{
+//				con.Open();
+//				string query = "SELECT COUNT(1) FROM Admins WHERE Email = @Email";
 
-		#endregion
-	}
-}
+//				using (SqlCommand cmd = new SqlCommand(query, con))
+//				{
+//					cmd.Parameters.AddWithValue("@Email", email);
+
+//					int count = (int)cmd.ExecuteScalar();
+//					return count > 0;
+//				}
+//			}
+//		}
+//	}
+//}

@@ -4,7 +4,7 @@ using Microsoft.Data.SqlClient;
 
 namespace Food_Bistro.Models.Repositories
 {
-    public class UserRepo : IUsers
+    public class UserRepo : IUserRepo
     {
         string conStr = "Data Source=(localdb)\\ProjectModels;Initial Catalog=FoodBistro;Integrated Security=True;Connect Timeout=30";
 

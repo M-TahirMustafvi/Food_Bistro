@@ -1,31 +1,38 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Food_Bistro.Models.Repositories;
 using Food_Bistro.Models.Classes;
+using Food_Bistro.Models.Interfaces;
 
 namespace Food_Bistro.Controllers
 {
     public class UserController : Controller
     {
-        public IActionResult Index()
+		private readonly IUserRepo _userRepo;
+
+        public UserController(IUserRepo userRepo)
+        {
+            _userRepo = userRepo;
+        }
+
+		public IActionResult Index()
         {
             return View("SignUp");
         }
 
         [HttpPost]
-        public IActionResult Index(Users usr)
+        public IActionResult Index(Users user)
         {
             if (!HttpContext.Request.Cookies.ContainsKey("mail"))
             {
-                if (!string.IsNullOrEmpty(usr.Name))
-                    HttpContext.Response.Cookies.Append("name", usr.Name);
+                if (!string.IsNullOrEmpty(user.Name))
+                    HttpContext.Response.Cookies.Append("name", user.Name);
 
-                if (!string.IsNullOrEmpty(usr.Email))
-                    HttpContext.Response.Cookies.Append("mail", usr.Email);
+                if (!string.IsNullOrEmpty(user.Email))
+                    HttpContext.Response.Cookies.Append("mail", user.Email);
 
             }
 
-            UserRepo repo = new UserRepo();
-            if (repo.addUser(usr))
+            if (_userRepo.addUser(user))
                 return RedirectToAction("Index", "Home");
 
 			ViewBag.Message = "*Email already registered!";
@@ -53,7 +60,7 @@ namespace Food_Bistro.Controllers
             }
 
             UserRepo repo = new UserRepo();
-            if (repo.authUser(Email, Password))
+            if (_userRepo.authUser(Email, Password))
                 return RedirectToAction("Index", "Home");
 
             ViewBag.Message = "*Wrong Authentication Details!";
