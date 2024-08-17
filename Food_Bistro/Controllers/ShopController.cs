@@ -8,5 +8,11 @@ namespace Food_Bistro.Controllers
         {
             return View();
         }
+        
+        public IActionResult ProductDetails()
+        {
+            return View();
+        }
+
     }
 }
