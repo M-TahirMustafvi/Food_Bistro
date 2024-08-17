@@ -18,7 +18,7 @@
                         <div class="card-body p-2">
                             <h5 class="card-title fs-6">@product.Name</h5>
                             <p class="card-text fs-6">Rs. @product.Price</p>
-                            <a asp-action="Index" asp-controller="Cart" class="btn btn-primary btn-sm">Add To Cart</a>
+                            <a asp-action="AddToCart" asp-controller="Cart" asp-route-id="@product.Id" class="btn btn-primary btn-sm">Add To Cart</a>
                         </div>
                     </div>
 
@@ -38,6 +38,7 @@
 
         @foreach (Product product in Model)
         {
+            Console.WriteLine(product.Id);
             if (product.Category == "pizza")
             {
                 <div class="col-6 col-md-3 mb-4">
@@ -47,7 +48,7 @@
                         <div class="card-body p-2">
                             <h5 class="card-title fs-6">@product.Name</h5>
                             <p class="card-text fs-6">Rs. @product.Price</p>
-                            <a asp-action="Index" asp-controller="Cart" class="btn btn-primary btn-sm">Add To Cart</a>
+                            <a asp-action="AddToCart" asp-controller="Cart" asp-route-id="@product.Id" class="btn btn-primary btn-sm">Add To Cart</a>
                         </div>
                     </div>
 

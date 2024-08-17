@@ -6,6 +6,9 @@ namespace Food_Bistro.Models.Interfaces
     {
         public bool addUser(Users usr);
         public bool authUser(String mail, String pwd);
-        //private bool authUser(String mail);
+        public void updateUser(Users user);
+        public void deleteUser(int id);
+        public IEnumerable<Users> getAllUsers();
+        public Users getUserbyEmail(string mail);
     }
 }

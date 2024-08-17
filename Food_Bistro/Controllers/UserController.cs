@@ -22,18 +22,20 @@ namespace Food_Bistro.Controllers
         [HttpPost]
         public IActionResult Index(Users user)
         {
-            if (!HttpContext.Request.Cookies.ContainsKey("mail"))
-            {
+           
                 if (!string.IsNullOrEmpty(user.Name))
                     HttpContext.Response.Cookies.Append("name", user.Name);
 
                 if (!string.IsNullOrEmpty(user.Email))
                     HttpContext.Response.Cookies.Append("mail", user.Email);
 
-            }
+            
 
             if (_userRepo.addUser(user))
+            {
+                HttpContext.Session.SetString("UserEmail", user.Email);
                 return RedirectToAction("Index", "Home");
+            }
 
 			ViewBag.Message = "*Email already registered!";
             return View("SignUp");
@@ -59,11 +61,19 @@ namespace Food_Bistro.Controllers
 
             }
 
-            UserRepo repo = new UserRepo();
             if (_userRepo.authUser(Email, Password))
-                return RedirectToAction("Index", "Home");
+            {
+                HttpContext.Session.SetString("UserEmail", Email);
+                return RedirectToAction("Index", "Home"); 
+            }
 
             ViewBag.Message = "*Wrong Authentication Details!";
+            return View("LogIn");
+        }
+
+        public IActionResult LogOut()
+        {
+            HttpContext.Session.Clear();
             return View("LogIn");
         }
     }

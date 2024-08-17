@@ -1,1 +1,47 @@
-﻿<h2>Inside Cart Index View</h2>
+﻿@using Food_Bistro.Models.Classes;
+@using System.Text.Json;
+@model List<CartItem>
+@{
+    var cartJson = ViewContext.HttpContext.Session.GetString("Cart");
+    List<CartItem> myModel;
+    if (!string.IsNullOrEmpty(cartJson))
+    {
+        myModel = JsonSerializer.Deserialize<List<CartItem>>(cartJson);
+    }
+    else
+    {
+        myModel = new List<CartItem>(); // Initialize an empty cart if no data is found
+    }
+    
+}
+<div class="container">
+    <h2>Your Cart</h2>
+    @if (myModel.Count == 0)
+    {
+        <p>Your cart is empty.</p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in myModel)
+                {
+                    <tr>
+                        <td>@item.product.Name</td>
+                        <td>@item.CartQuantity</td>
+                        <td>Rs. @item.product.Price</td>
+                        <td>Rs. @item.product.Price * @item.CartQuantity</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

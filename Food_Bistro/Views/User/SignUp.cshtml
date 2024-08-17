@@ -2,9 +2,9 @@
 @model Users
 
 @{
-	string name = ViewContext.HttpContext.Request.Cookies["name"];
+	string? name = ViewContext.HttpContext.Request.Cookies["name"];
 
-	string mail = ViewContext.HttpContext.Request.Cookies["mail"];
+	string? mail = ViewContext.HttpContext.Request.Cookies["mail"];
 
 }
 
@@ -17,7 +17,7 @@
 
 				<div class ="mb-3">
 					<label asp-for="Name" class="form-label"></label>
-					<input asp-for="Name" class="form-control value=@name" required/>
+					<input asp-for="Name" class="form-control" required/>
 				</div>
 
 				<div class ="mb-3">
