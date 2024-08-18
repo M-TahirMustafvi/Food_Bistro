@@ -52,7 +52,6 @@ namespace Food_Bistro.Controllers
         private void saveCart(List<CartItem> cart)
         {
             var cartJson = JsonSerializer.Serialize(cart);
-            Console.WriteLine(cartJson);
             HttpContext.Session.SetString("Cart", cartJson);
         }
     }

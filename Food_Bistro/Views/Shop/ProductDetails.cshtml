@@ -1,4 +1,11 @@
 ﻿<div class="container-fluid m-2 bg-light">
+ @{
+        if (!(string.IsNullOrEmpty(ViewContext.HttpContext.Session.GetString("UserName"))))
+            Layout = "_SessionLayout";
+
+        ViewBag.Title = "Product-Details";
+ }
+
     <div class="row">
 
         <div class="col-md-4">

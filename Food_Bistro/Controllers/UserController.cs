@@ -33,7 +33,9 @@ namespace Food_Bistro.Controllers
 
             if (_userRepo.addUser(user))
             {
+                LogOut();
                 HttpContext.Session.SetString("UserEmail", user.Email);
+                HttpContext.Session.SetString("UserName", user.Name);
                 return RedirectToAction("Index", "Home");
             }
 
@@ -63,7 +65,13 @@ namespace Food_Bistro.Controllers
 
             if (_userRepo.authUser(Email, Password))
             {
+                Users curr = _userRepo.getUserbyEmail(Email);
+                LogOut();
                 HttpContext.Session.SetString("UserEmail", Email);
+                HttpContext.Session.SetString("UserName",curr.Name);
+                if (curr.Role == "admin")
+                    return RedirectToAction("Index", "Admin");
+                
                 return RedirectToAction("Index", "Home"); 
             }
 

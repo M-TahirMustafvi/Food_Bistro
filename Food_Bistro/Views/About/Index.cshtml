@@ -1,4 +1,9 @@
-﻿
+﻿@{
+    if(!(string.IsNullOrEmpty(ViewContext.HttpContext.Session.GetString("UserName"))))
+        Layout = "_SessionLayout";
+
+    ViewBag.Title = "About";
+}
 
     
 <div class="container-fluid m-2 bg-light">

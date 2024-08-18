@@ -91,7 +91,8 @@ namespace Food_Bistro.Models.Repositories
                                 Id = reader.GetInt32(0),
                                 Name = reader.GetString(1),
                                 Email = reader.GetString(2),
-                                Password = reader.GetString(3)
+                                Password = reader.GetString(3),
+                                Role = reader.GetString(4)
                             };
                             users.Add(user);
                         }
@@ -110,7 +111,7 @@ namespace Food_Bistro.Models.Repositories
             {
                 con.Open();
 
-                string cmdText = "SELECT Id, Name, Email, Password FROM Users WHERE Email = @mail";
+                string cmdText = "SELECT Id, Name, Email, Password, Role FROM Users WHERE Email = @mail";
 
                 using (SqlCommand cmd = new SqlCommand(cmdText, con))
                 {
@@ -125,7 +126,8 @@ namespace Food_Bistro.Models.Repositories
                                 Id = reader.GetInt32(0),
                                 Name = reader.GetString(1),
                                 Email = reader.GetString(2),
-                                Password = reader.GetString(3)
+                                Password = reader.GetString(3),
+                                Role = reader.GetString(4)
                             };
                         }
                     }
@@ -141,13 +143,14 @@ namespace Food_Bistro.Models.Repositories
             {
                 con.Open();
 
-                string cmdText = "UPDATE Users SET Name = @UserName, Email = @Email, Password = @Password WHERE Id = @Id";
+                string cmdText = "UPDATE Users SET Name = @UserName, Email = @Email, Password = @Password, Role = @Role WHERE Id = @Id";
 
                 using (SqlCommand cmd = new SqlCommand(cmdText, con))
                 {
                     cmd.Parameters.AddWithValue("@UserName", user.Name);
                     cmd.Parameters.AddWithValue("@Email", user.Email);
                     cmd.Parameters.AddWithValue("@Password", user.Password);
+                    cmd.Parameters.AddWithValue("@Role", user.Role);
                     cmd.Parameters.AddWithValue("@Id", user.Id);
 
                     cmd.ExecuteNonQuery();
