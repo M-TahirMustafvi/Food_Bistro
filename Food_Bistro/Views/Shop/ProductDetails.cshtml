@@ -1,22 +1,39 @@
-﻿<div class="container-fluid m-2 bg-light">
+﻿@using Food_Bistro.Models.Classes
+@model Product
+
+<div class="container-fluid m-2 bg-light">
     <div class="row">
-
-        <div class="col-md-4">
-            <img src="Assets/Products/pro-02.png" alt="Product Image" style="width: 100%; height: 350px; object-fit: cover; border-radius: 5px;">
-        </div>
-
-        <div class="col-md-4 d-flex flex-column justify-content-center">
-            <div>
-                <h3 class="mb-3">Product Name</h3>
-                <p>This is a brief description of the product, highlighting its features and benefits. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis lorem ut libero malesuada feugiat.</p>
-                <p class="text-muted mt-2">Price: <strong>$99.99</strong></p>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="row g-0">
+                    <div class="col-md-5">
+                        <img src="~/Assets/Products/pro-02.png" alt="Product Image" style="width: 100%; height: 350px; object-fit: cover; border-radius: 10px;">
+                    </div>
+                    <div class="col-md-7 d-flex flex-column justify-content-center p-3 border-1">
+                        <div class="card-body mt-5">
+                            <h5 class="card-title">Product Name: <span>Burger</span></h5>
+                            <p class="card-text mt-3">
+                                <strong>Id:</strong> 101<br />
+                                <strong>Price:</strong> 450/-<br />
+                                <strong>Category:</strong> Fast Food<br />
+                                <strong>Description:</strong> Tahir Likes to Eat Burger So you should try one.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="col-md-4 d-flex flex-column justify-content-center">
-            <div>
-                <button class="btn btn-success btn-lg mb-3 w-100">Add to Cart</button>
-                <button class="btn btn-primary btn-lg w-100">Buy Now</button>
+        <div class="col-md-4 d-flex flex-column justify-content-center" style="border: 1px solid;">
+            <form action="post" method="post">
+                <div class="form-floating text-center mb-3 w-50 mx-auto">
+                    <input asp-for="Quantity" class="form-control bg-light" id="floatingQuantity" placeholder="Quantity" style="border-radius: 50px;">
+                    <label for="floatingQuantity" class="text-black">Quantity</label>
+                </div>
+            </form>
+            <div class="text-center">
+                <button class="btn btn-success btn-lg mb-3 w-50 mx-auto" style="border-radius: 50px;">Add to Cart</button>
+                <button class="btn btn-primary btn-lg w-50 mx-auto" style="border-radius: 50px;">Buy Now</button>
             </div>
         </div>
     </div>

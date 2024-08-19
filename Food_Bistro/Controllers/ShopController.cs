@@ -9,11 +9,11 @@ namespace Food_Bistro.Controllers
     {
         public IActionResult Index()
         {
-            ProductRepo productsRepo = new ProductRepo();
+        //    ProductRepo productsRepo = new ProductRepo();
 
-            return View(productsRepo.getAllProduct());
+            return View(/*productsRepo.getAllProduct()*/);
         }
-        
+
         public IActionResult ProductDetails()
         {
             return View();
