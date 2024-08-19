@@ -1,0 +1,91 @@
+﻿@using Food_Bistro.Models.Classes;
+@model Product;
+@{
+    if (!(string.IsNullOrEmpty(ViewContext.HttpContext.Session.GetString("UserName"))))
+        Layout = "_AdminLayout";
+    else
+        Layout = "_Layout";
+
+    ViewBag.Title = "Add Product";
+}
+
+@if (!(string.IsNullOrEmpty(ViewContext.HttpContext.Session.GetString("UserName"))))
+{
+    <body class="bg-dark" style="font-family: 'Roboto', sans-serif;color: #ffffff;background: url('https://images.pexels.com/photos/326281/pexels-photo-326281.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');background-size: cover;">
+
+        <div class="min-vh-100">
+            <div class="container-lg text-center fs-1" style="font-family:Britannic; color: #ffffff;">
+                <a asp-action="Index" asp-controller="Admin" style="font-family:Britannic; color: #ffffff; text-decoration: none;">
+                    Food Bistro Admin
+                </a>
+            </div>
+
+
+
+            <div class="container large-box mt-5 mb-5">
+                <div class="card card-class1">
+                    <div class="card-header text-center">
+                        <p class="fs-4">Update Menu Items</p>
+                    </div>
+                    <form method="post" action="/Admin/AddProduct" class="p-4">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="Name" class="form-control bg-dark" id="floatingName" placeholder="Name" style="color: white;">
+                                    <label for="floatingName">Name</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="ImgUrl" class="form-control bg-dark" id="floatingImgUrl" placeholder="ImgUrl" style="color: white;">
+                                    <label for="floatingImgUrl">Image URL</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="Price" class="form-control bg-dark" id="floatingPrice" placeholder="Price" style="color: white;">
+                                    <label for="floatingPrice">Price</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="Quantity" class="form-control bg-dark" id="floatingQuantity" placeholder="Quantity" style="color: white;">
+                                    <label for="floatingQuantity">Quantity</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="Category" class="form-control bg-dark" id="floatingCategory" placeholder="Category" style="color: white;">
+                                    <label for="floatingCategory">Category</label>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="Description" class="form-control bg-dark" id="floatingDescription" placeholder="Description" style="color: white;height: 100px">
+                            <label for="floatingDescription">Description</label>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success w-100">Add Item</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </body>
+}
+
+else
+{
+ <h2>Your Session is expired please Login again</h2>   
+}

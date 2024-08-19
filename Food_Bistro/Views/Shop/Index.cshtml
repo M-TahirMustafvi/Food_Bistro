@@ -1,0 +1,66 @@
+﻿@using Food_Bistro.Models.Classes;
+@model List<Product>;
+@{
+    if (!(string.IsNullOrEmpty(ViewContext.HttpContext.Session.GetString("UserName"))))
+        Layout = "_SessionLayout";
+
+    ViewBag.Title = "Shop";
+}
+
+
+<div class="container-fluid bg-light">
+    <h2 class="text-center py-3 fw-bold" style="font-family: 'A Love of Thunder', Sans-serif; font-size: 54px; font-weight: 400;">Lets Eat</h2>
+    <div class="row justify-content-start text-center p-4">
+        <h1 class="text-start mb-5">BURGERS</h1>
+      
+        @foreach (Product product in Model)
+        {
+            if (product.Category == "burger")
+            {
+                <div class="col-6 col-md-3 mb-4">
+                    <div class="card">
+                        <img src="@product.ImgUrl" class="card-img-top" style="height:350px; object-fit: cover;" alt="...">
+                        <hr />
+                        <div class="card-body p-2">
+                            <h5 class="card-title fs-6">@product.Name</h5>
+                            <p class="card-text fs-6">Rs. @product.Price</p>
+                            <a asp-action="AddToCart" asp-controller="Cart" asp-route-id="@product.Id" class="btn btn-primary btn-sm">Add To Cart</a>
+                        </div>
+                    </div>
+
+                </div>
+            }
+        }
+
+    </div>
+
+
+
+    <div class="row justify-content-start text-center p-4">
+        <h1 class="text-start mb-5">PIZZA</h1>
+
+        <!-- Card 1 -->
+
+
+        @foreach (Product product in Model)
+        {
+            if (product.Category == "pizza")
+            {
+                <div class="col-6 col-md-3 mb-4">
+                    <div class="card">
+                        <img src="@product.ImgUrl" class="card-img-top" style="height:350px; object-fit: cover;" alt="...">
+                        <hr />
+                        <div class="card-body p-2">
+                            <h5 class="card-title fs-6">@product.Name</h5>
+                            <p class="card-text fs-6">Rs. @product.Price</p>
+                            <a asp-action="AddToCart" asp-controller="Cart" asp-route-id="@product.Id" class="btn btn-primary btn-sm">Add To Cart</a>
+                        </div>
+                    </div>
+
+                </div>
+            }
+        }
+
+
+    </div>
+</div>

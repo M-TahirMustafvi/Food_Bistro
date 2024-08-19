@@ -1,0 +1,118 @@
+﻿@{
+    string? UserName = ViewContext.HttpContext.Session.GetString("UserName");
+    string? UserEmail = ViewContext.HttpContext.Session.GetString("UserEmail");
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/84ab20ed09.js" crossorigin="anonymous"></script>
+    <style>
+        .large-box {
+            background-color: #d3d3d3;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .card-class1 {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            background: linear-gradient(135deg, #333, #555);
+            padding: 20px;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        .background-section {
+            background-image: url('https://t4.ftcdn.net/jpg/02/44/69/87/360_F_244698725_uWdUNY1oiaHthwcb1NK6IqtPuRNKHor2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 80px 0;
+        }
+
+        .custom-text {
+            font-family: 'Newsreader', serif;
+            color: #333;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            letter-spacing: 0.5px;
+        }
+
+        .navbar-toggler-icon {
+            z-index: 9999;
+        }
+    </style>
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand text-white" href="#">My Website</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a asp-action="LogOut" asp-controller="User"><button class="btn btn-danger">SignOut</button></a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li class="dropdown-item">@UserName</li>
+                                <li class="dropdown-item">@UserEmail</li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" asp-action="Logout" asp-controller="User">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main" class="container-fluid p-0">
+        @RenderBody()
+    </main>
+
+    <footer class="background-section text-center text-lg-start">
+        <div class="container p-4">
+            <div class="row">
+                <div class="col">
+                    <h1 class="text-white">Food Bistro</h1>
+                    <p class="text-light">&copy; 2024 My Website. All rights reserved.</p>
+                </div>
+                <div class="col">
+                    <p class="fs-2 text-white">Links</p>
+                    <a href="#" class="cursor-pointer fs-5 text-light">Home</a><br />
+                    <a href="#" class="cursor-pointer fs-5 text-light">About</a><br />
+                    <a href="#" class="cursor-pointer fs-5 text-light">Services</a><br />
+                    <a href="#" class="cursor-pointer fs-5 text-light">Cart</a><br />
+                    <a href="#" class="cursor-pointer fs-5 text-light">Contact</a><br />
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

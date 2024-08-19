@@ -1,0 +1,58 @@
+﻿@using Food_Bistro.Models.Classes
+@model List<Product>
+@{
+    if (!(string.IsNullOrEmpty(ViewContext.HttpContext.Session.GetString("UserName"))))
+        Layout = "_AdminLayout";
+    else
+        Layout = "_Layout";
+    ViewBag.Title = "Admin";
+}
+
+@if (!(string.IsNullOrEmpty(ViewContext.HttpContext.Session.GetString("UserName"))))
+{
+
+    <body class="bg-dark" style="font-family: 'Roboto', sans-serif;color: #ffffff;background: url('https://images.pexels.com/photos/326281/pexels-photo-326281.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');background-size: cover;">
+    
+        <div class="min-vh-100">
+            <div class="min-vh-100">
+                <div class="container-lg text-center fs-1" style="font-family:Britannic; color: #ffffff;">
+                    <a asp-action="Index" asp-controller="Admin" style="font-family:Britannic; color: #ffffff; text-decoration: none;">
+                        Food Bistro Admin
+                    </a>
+                </div>
+            <div class="text-center mt-3">
+                <a asp-action="AddProduct" class="btn btn-primary btn-lg" style="background-color: #ffc107; border-color: #ffc107; color: #000; text-transform: uppercase; font-weight: bold;">
+                    Add a Food to Menu
+                </a>
+            </div>
+
+            <div class="container large-box mt-5 mb-5">
+                <div class="card card-class1">
+                    <div class="card-header">
+                        <p class="fs-4">Update Menu Items</p>
+                    </div>
+                    <div class="card-body">
+                        @foreach (Product product in Model)
+                        {
+                            <p style="margin-bottom:20px">@product.Name 
+                                <a asp-action="DeleteProduct" asp-route-id="@product.Id">
+                                    <button class="btn btn-danger float-end">Delete</button>
+                                </a>
+
+                                <a asp-action="EditProduct" asp-route-id="@product.Id">
+                                    <button class="btn btn-success float-end me-3">Edit</button>
+                                </a>
+                            </p>
+                            @* <p style="margin-bottom:20px">Burger <button class="btn btn-danger float-end">Delete</button><button class="btn btn-success float-end me-3">Edit</button></p>
+                            <p style="margin-bottom:20px">Pasta <button class="btn btn-danger float-end">Delete</button><button class="btn btn-success float-end me-3">Edit</button></p> *@
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+}
+else
+{
+    <h2>Your Session is expired please Login again</h2>
+}
