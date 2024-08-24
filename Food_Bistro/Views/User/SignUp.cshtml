@@ -9,40 +9,45 @@
 	ViewBag.Title = "Sign Up";
 }
 
-	<div class="d-flex justify-content-center align-items-center vh-100">
-		<div class="card p-4 shadow"style="width: 25rem;">
-			<h2 class="text-center mb-4">Sign-UP</h2>
+<!-- Container for the background image -->
+<div class="d-flex vh-100" style="height: 50vh; background: url('Assets/bgsignup.jpg') no-repeat center center; background-size: cover; color: #eaeaea; position: relative;">
 
+    <!-- Form container aligned to the left -->
+    <div class="d-flex justify-content-center align-items-center w-100">
+        <div class="card p-4 shadow" style="width: 25rem;">
+            <h2 class="text-center mb-4">Sign-UP</h2>
 
-			<form method = "post"  action = "/User/Index">
+            <form method="post" action="/Admin/Index">
 
-				<div class ="mb-3">
-					<label asp-for="Name" class="form-label"></label>
-					<input asp-for="Name" class="form-control" required/>
-				</div>
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label"></label>
+                    <input asp-for="Name" class="form-control" value="@name" required />
+                </div>
 
-				<div class ="mb-3">
-					<label asp-for="Email"  class="form-label"></label>
-					<input asp-for="Email"  class="form-control" type = "email" value="@mail" required/>
-				</div>
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control" value="@mail" required />
+                </div>
 
-				<div class ="mb-3">
-					<label asp-for="Password" class="form-label"></label> 
-					<input asp-for="Password" type="password" class="form-control" required/>
-				</div>
+                <div class="mb-3">
+                    <label asp-for="Password" class="form-label"></label>
+                    <input asp-for="Password" type="password" class="form-control" required />
+                </div>
 
-				<div class="d-flex justify-content-center">
-					<button type="submit" class="btn btn-primary w-75">Submit</button>
-				</div>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary w-75">Submit</button>
+                </div>
 
-				<div class="text-danger text-center mt-3">
-					@ViewBag.Message
-				</div>
+                <div class="text-danger text-center mt-3">
+                    @ViewBag.Message
+                </div>
 
-				<div class="text-center mt-4">
-					<span>Already a Foody?</span> 
-					<a asp-action="LogIn" class="text-decoration-none">Log-In</a>
-				</div>
-			</form>
-		</div>
-	</div>
+                <div class="text-center mt-4">
+                    <span>Already a Foody?</span>
+                    <a asp-action="LogIn" class="text-decoration-none">Log-In</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
