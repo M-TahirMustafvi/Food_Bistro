@@ -25,9 +25,9 @@
             <div class="container large-box mt-5 mb-5">
                 <div class="card card-class1">
                     <div class="card-header text-center">
-                        <p class="fs-4">Update Menu Items</p>
+                        <p class="fs-4">Add Items</p>
                     </div>
-                    <form method="post" action="/Admin/AddProduct" class="p-4">
+                    <form method="post" action="/Admin/AddProduct" class="p-4" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-floating mb-3">
@@ -40,24 +40,25 @@
                         <div class="row">
                             <div class="col-md-8">
                                 <div class="form-floating mb-3">
-                                    <input asp-for="ImgUrl" class="form-control bg-dark" id="floatingImgUrl" placeholder="ImgUrl" style="color: white;">
-                                    <label for="floatingImgUrl">Image URL</label>
+                                    <input asp-for="Quantity" class="form-control bg-dark" id="floatingQuantity" placeholder="Quantity" style="color: white;">
+                                    <label for="floatingQuantity">Quantity</label>
                                 </div>
                             </div>
 
                             <div class="col-md-4">
-                                <div class="form-floating mb-3">
-                                    <input asp-for="Price" class="form-control bg-dark" id="floatingPrice" placeholder="Price" style="color: white;">
-                                    <label for="floatingPrice">Price</label>
-                                </div>
+                                Upload Image
+                                <input asp-for="ImgUrl" class="form-control text-light mb-3" id="floatingImgUrl" type="file" style="background-color: transparent; border:none;">
                             </div>
                         </div>
+
 
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
-                                    <input asp-for="Quantity" class="form-control bg-dark" id="floatingQuantity" placeholder="Quantity" style="color: white;">
-                                    <label for="floatingQuantity">Quantity</label>
+                                    <input asp-for="Price" class="form-control bg-dark text-light border-light" id="floatingPrice" placeholder="Price">
+                                    <label for="floatingPrice" class="text-light">Price</label>
+
+                                    
                                 </div>
                             </div>
                             <div class="col-md-6">

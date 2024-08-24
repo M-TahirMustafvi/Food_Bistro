@@ -31,6 +31,7 @@ namespace Food_Bistro.Controllers
 		{
 			ProductRepo productsRepo = new ProductRepo();
 			productsRepo.addProduct(product);
+			Console.WriteLine($"Producut url is: {product.ImgUrl}");
 			return View("Index",productsRepo.getAllProduct());
 		}
 
