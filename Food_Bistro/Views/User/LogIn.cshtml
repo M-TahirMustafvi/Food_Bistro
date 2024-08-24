@@ -9,14 +9,17 @@
 
 
 <!-- Container for the background image -->
-<div class="d-flex vh-100" style="height: 50vh; background: url('Assets/bglogin.jpg') no-repeat center center; background-size: cover; color: #eaeaea; position: relative;">
+<div class="d-flex vh-100 position-relative overflow-hidden" style="height: 50vh; background: url('/Assets/bglogin.jpg') no-repeat center center; background-size: cover; color: #eaeaea;">
+
+    <!-- Pseudo-element for background blur -->
+    <div class="background-blur"></div>
 
     <!-- Form container aligned to the left -->
-    <div class="d-flex justify-content-center align-items-center w-100">
+    <div class="d-flex justify-content-center align-items-center w-100 position-relative">
         <div class="card p-4 shadow" style="width: 22rem;">
             <h2 class="text-center mb-4">Log-In</h2>
 
-            <form method="post" action="/Admin/Login">
+            <form method="post" action="/User/LogIn">
                 <div class="mb-3">
                     <label asp-for="Email" class="form-label"></label>
                     <input asp-for="Email" class="form-control" value="@mail" required />
@@ -44,3 +47,4 @@
     </div>
 
 </div>
+

@@ -11,28 +11,26 @@
 
 @if (!(string.IsNullOrEmpty(ViewContext.HttpContext.Session.GetString("UserName"))))
 {
-    <body class="bg-dark" style="font-family: 'Roboto', sans-serif;color: #ffffff;background: url('https://images.pexels.com/photos/326281/pexels-photo-326281.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');background-size: cover;">
+    <body class="bg-dark" style="font-family: 'Roboto', sans-serif; color: #f8f9fa; background: url('https://images.pexels.com/photos/326281/pexels-photo-326281.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); background-size: cover; filter: blur(5px);">
 
         <div class="min-vh-100">
-            <div class="container-lg text-center fs-1" style="font-family:Britannic; color: #ffffff;">
-                <a asp-action="Index" asp-controller="Admin" style="font-family:Britannic; color: #ffffff; text-decoration: none;">
+            <div class="container-lg text-center fs-1" style="font-family:Britannic; color: #f8f9fa;">
+                <a asp-action="Index" asp-controller="Admin" style="font-family:Britannic; color: #f8f9fa; text-decoration: none;">
                     Food Bistro Admin
                 </a>
             </div>
 
-
-
             <div class="container large-box mt-5 mb-5">
-                <div class="card card-class1">
-                    <div class="card-header text-center">
+                <div class="card card-class1" style="background-color: rgba(33, 37, 41, 0.8); border: none;">
+                    <div class="card-header text-center" style="background-color: rgba(52, 58, 64, 0.8); border-bottom: none;">
                         <p class="fs-4">Update Menu Items</p>
                     </div>
                     <form method="post" action="/Admin/AddProduct" class="p-4">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-floating mb-3">
-                                    <input asp-for="Name" class="form-control bg-dark" id="floatingName" placeholder="Name" style="color: white;">
-                                    <label for="floatingName">Name</label>
+                                    <input asp-for="Name" class="form-control bg-dark text-light" id="floatingName" placeholder="Name">
+                                    <label for="floatingName" class="text-light">Name</label>
                                 </div>
                             </div>
                         </div>
@@ -40,15 +38,15 @@
                         <div class="row">
                             <div class="col-md-8">
                                 <div class="form-floating mb-3">
-                                    <input asp-for="ImgUrl" class="form-control bg-dark" id="floatingImgUrl" placeholder="ImgUrl" style="color: white;">
-                                    <label for="floatingImgUrl">Image URL</label>
+                                    <input asp-for="ImgUrl" class="form-control bg-dark text-light" id="floatingImgUrl" placeholder="ImgUrl">
+                                    <label for="floatingImgUrl" class="text-light">Image URL</label>
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="form-floating mb-3">
-                                    <input asp-for="Price" class="form-control bg-dark" id="floatingPrice" placeholder="Price" style="color: white;">
-                                    <label for="floatingPrice">Price</label>
+                                    <input asp-for="Price" class="form-control bg-dark text-light" id="floatingPrice" placeholder="Price">
+                                    <label for="floatingPrice" class="text-light">Price</label>
                                 </div>
                             </div>
                         </div>
@@ -56,22 +54,21 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
-                                    <input asp-for="Quantity" class="form-control bg-dark" id="floatingQuantity" placeholder="Quantity" style="color: white;">
-                                    <label for="floatingQuantity">Quantity</label>
+                                    <input asp-for="Quantity" class="form-control bg-dark text-light" id="floatingQuantity" placeholder="Quantity">
+                                    <label for="floatingQuantity" class="text-light">Quantity</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
-                                    <input asp-for="Category" class="form-control bg-dark" id="floatingCategory" placeholder="Category" style="color: white;">
-                                    <label for="floatingCategory">Category</label>
+                                    <input asp-for="Category" class="form-control bg-dark text-light" id="floatingCategory" placeholder="Category">
+                                    <label for="floatingCategory" class="text-light">Category</label>
                                 </div>
                             </div>
                         </div>
 
-
                         <div class="form-floating mb-3">
-                            <input asp-for="Description" class="form-control bg-dark" id="floatingDescription" placeholder="Description" style="color: white;height: 100px">
-                            <label for="floatingDescription">Description</label>
+                            <input asp-for="Description" class="form-control bg-dark text-light" id="floatingDescription" placeholder="Description" style="height: 100px">
+                            <label for="floatingDescription" class="text-light">Description</label>
                         </div>
 
                         <div class="d-grid">
@@ -87,5 +84,5 @@
 
 else
 {
- <h2>Your Session is expired please Login again</h2>   
+    <h2>Your Session is expired please Login again</h2>
 }
