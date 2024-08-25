@@ -5,68 +5,184 @@
 }
 
 <!DOCTYPE html>
+<html lang="en">
 
-<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>@ViewBag.Title</title>
-    <link href="/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/84ab20ed09.js" crossorigin="anonymous"></script>
-    <script src="/lib/jquery/dist/jquery.min.js"></script> <!-- jQuery -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   <script src="https://kit.fontawesome.com/84ab20ed09.js" crossorigin="anonymous"></script>
+   <script src="/lib/jquery/dist/jquery.min.js"></script> <!-- jQuery -->
 
     <style>
-        .large-box {
-            background-color: #d3d3d3;
-            padding: 20px;
-            border-radius: 8px;
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: #eaeaea;
+            background-color: #121212; /* Dark background */
         }
 
-        .card-class1 {
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            border-radius: 10px;
-            background: linear-gradient(135deg, #333, #555);
-            padding: 20px;
+        /* Navbar Styling */
+        .navbar {
+            background-color: #1c1c1c; /* Slightly lighter than the body */
+            padding: 1rem;
         }
 
-        html, body {
-            height: 100%;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
+        .navbar-brand {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #ffcc00; /* Bright accent color for branding */
         }
 
-        main {
-            flex: 1;
+        .navbar-nav .nav-link {
+            color: #eaeaea;
+            margin-right: 1rem;
+            transition: color 0.3s ease;
         }
 
+            .navbar-nav .nav-link:hover {
+                color: #ffcc00; /* Accent color for hover effect */
+            }
+
+        .dropdown-toggle {
+            color: #ffcc00;
+        }
+
+        .dropdown-menu {
+            background-color: #2b2b2b; /* Dark dropdown */
+            border: none;
+        }
+
+        .dropdown-item {
+            color: #eaeaea;
+            transition: background-color 0.3s ease;
+        }
+
+            .dropdown-item:hover {
+                background-color: #3b3b3b; /* Darker background on hover */
+            }
+
+        /* Header Section */
         .background-section {
-            background-image: url('https://t4.ftcdn.net/jpg/02/44/69/87/360_F_244698725_uWdUNY1oiaHthwcb1NK6IqtPuRNKHor2.jpg');
+            background-image: url('https://images.unsplash.com/photo-1514516872334-55e588486a02?fit=crop&w=1650&q=80'); /* Dark-themed food image */
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
-            padding: 80px 0;
+            padding: 120px 0;
+            color: #fff;
+            text-align: center;
+            position: relative;
         }
 
-        .custom-text {
-            font-family: 'Newsreader', serif;
-            color: #333;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-            letter-spacing: 0.5px;
+            .background-section::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.6); /* Dark overlay for better text contrast */
+                z-index: 0;
+            }
+
+            .background-section h1,
+            .background-section p {
+                position: relative;
+                z-index: 1;
+            }
+
+            .background-section h1 {
+                font-size: 3rem;
+                font-weight: 700;
+                margin-bottom: 20px;
+            }
+
+            .background-section p {
+                font-size: 1.25rem;
+                max-width: 600px;
+                margin: 0 auto;
+                line-height: 1.5;
+            }
+
+        /* Footer Styling */
+        footer {
+            background-color: #1c1c1c; /* Slightly lighter for footer */
+            color: #eaeaea;
+            padding: 2rem 0;
         }
 
-        .navbar-toggler-icon {
-            z-index: 9999;
+            footer h1 {
+                font-family: 'Roboto', sans-serif;
+                font-size: 2rem;
+                font-weight: 700;
+            }
+
+            footer a {
+                color: #ffcc00; /* Bright accent color */
+                transition: color 0.3s ease;
+            }
+
+                footer a:hover {
+                    color: #ffffff; /* Lighter on hover */
+                }
+
+        /* Utility Classes */
+        .text-light {
+            color: #eaeaea !important;
         }
+
+        .fs-2 {
+            font-size: 1.5rem;
+        }
+
+        .fs-5 {
+            font-size: 1.25rem;
+        }
+
+        .cursor-pointer {
+            cursor: pointer;
+        }
+
+        /* For Cards of Home */
+        .card {
+            background-color: #2b2b2b; /* Dark background for cards */
+            color: #eaeaea;
+        }
+
+            .card:hover {
+                transform: scale(1.05);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+            }
+
+        .card-img-top {
+            transition: transform 0.3s ease;
+        }
+
+            .card-img-top:hover {
+                transform: scale(1.1);
+            }
+
+        .btn-warning {
+            background-color: #ffcc00; /* Button color */
+            border: none;
+        }
+
+            .btn-warning:hover {
+                background-color: #ffd633;
+                transform: scale(1.05);
+            }
     </style>
 </head>
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg bg-success">
+        <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container-fluid">
-                <a class="navbar-brand text-white" href="#">My Website</a>
+                <a class="navbar-brand text-white" href="#">Food Bistro</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -109,24 +225,76 @@
         @RenderBody()
     </main>
 
-    <footer class="background-section text-center text-lg-start">
-        <div class="container p-4">
+    <footer class="text-center text-lg-start" style="position: relative; color: black;">
+        <!-- Background and Overlay -->
+        <div style="background: url('/Assets/bgfooter2.jpg') no-repeat center center; background-size: cover; position: absolute; top: 0; left: 0; width: 100%; height: 100%; filter: blur(5px); z-index: 1;">
+            <div style="background-color: rgba(0, 0, 0, 0.5); width: 100%; height: 100%;"></div>
+        </div>
+
+        <div class="container p-4" style="position: relative; z-index: 2;">
             <div class="row">
-                <div class="col">
-                    <h1 class="text-white">Food Bistro</h1>
-                    <p class="text-light">&copy; 2024 My Website. All rights reserved.</p>
+                <!-- Footer Column 1 -->
+                <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+                    <h1 class="fs-2 fw-bold" style="color: yellow; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);">Food Bistro</h1>
+                    <p style="color: white;">&copy; 2024 Food Bistro. All rights reserved.</p>
                 </div>
-                <div class="col">
-                    <p class="fs-2 text-white">Links</p>
-                    <a href="#" class="cursor-pointer fs-5 text-light">Home</a><br />
-                    <a href="#" class="cursor-pointer fs-5 text-light">About</a><br />
-                    <a href="#" class="cursor-pointer fs-5 text-light">Services</a><br />
-                    <a href="#" class="cursor-pointer fs-5 text-light">Cart</a><br />
-                    <a href="#" class="cursor-pointer fs-5 text-light">Contact</a><br />
+
+                <!-- Footer Column 2 -->
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                    <p class="fs-4 fw-bold" style="color:white;">Links</p>
+                    <a href="#" class="d-block fs-5 text-white mb-2" style="text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);">Home</a>
+                    <a href="#" class="d-block fs-5 text-white mb-2" style="text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);">About</a>
+                    <a href="#" class="d-block fs-5 text-white mb-2" style="text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);">Shop</a>
+                    <a href="#" class="d-block fs-5 text-white mb-2" style="text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);">Cart</a>
+                    <a href="#" class="d-block fs-5 text-white" style="text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);">Support</a>
+                </div>
+
+                <!-- Footer Column 3 -->
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0" style="color: white;">
+                    <p class="fs-4 fw-bold">Contact Information</p>
+
+                    <!-- Address -->
+                    <p class="fs-5">
+                        <i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i>
+                        1234 Main St, Anytown, USA
+                    </p>
+
+                    <!-- Phone -->
+                    <p class="fs-5">
+                        <i class="fas fa-phone" style="margin-right: 10px;"></i>
+                        +1 (555) 123-4567
+                    </p>
+
+                    <!-- Email -->
+                    <p class="fs-5">
+                        <i class="fas fa-envelope " style="margin-right: 10px;"></i>
+                        info@foodbistro.com
+                    </p>
+
+
+                    <!-- Social Media Icons -->
+                    <div class="d-flex justify-content-start mt-4">
+                        <a href="#" class="mx-2">
+                            <img src="~/Assets/facebook.png" alt="Facebook" style="width: 24px; height: 24px;">
+                        </a>
+                        <a href="#" class="mx-2">
+                            <img src="~/Assets/twitter.png" alt="Twitter" style="width: 24px; height: 24px;">
+                        </a>
+                        <a href="#" class="mx-2">
+                            <img src="~/Assets/linkedin.png" alt="LinkedIn" style="width: 24px; height: 24px;">
+                        </a>
+                        <a href="#" class="mx-2">
+                            <img src="~/Assets/youtube.png" alt="YouTube" style="width: 24px; height: 24px;">
+                        </a>
+                        <a href="#" class="mx-2">
+                            <img src="~/Assets/instagram.png" alt="Instagram" style="width: 24px; height: 24px;">
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </footer>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
