@@ -123,6 +123,38 @@ namespace Food_Bistro.Models.Repositories
             return product;
         }
 
+        public Product getProductByName(string QueryName)
+		{
+            Product product = null;
+            using (SqlConnection con = new SqlConnection(conStr))
+            {
+                string query = "SELECT * FROM product WHERE Name = @QueryName";
+
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@QueryName", QueryName);
+                    con.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            product = new Product
+                            {
+                                Id = reader.GetInt32(0),
+                                Name = reader.GetString(1),
+                                Price = reader.GetInt32(2),
+                                ImgUrl = reader.GetString(3),
+                                Quantity = reader.GetInt32(4),
+                                Category = reader.GetString(5),
+                                Description = reader.GetString(6)
+                            };
+                        }
+                    }
+                }
+            }
+            return product;
+        }
+
 		public void removeProduct(int id)
 		{
             using (SqlConnection con = new SqlConnection(conStr))

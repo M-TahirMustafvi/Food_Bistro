@@ -21,11 +21,13 @@
             </div>
 
             <div class="container large-box mt-5 mb-5">
+
                 <div class="card card-class1" style="background-color: rgba(33, 37, 41, 0.8); border: none;">
                     <div class="card-header text-center" style="background-color: rgba(52, 58, 64, 0.8); border-bottom: none;">
                         <p class="fs-4">Update Menu Items</p>
+
                     </div>
-                    <form method="post" action="/Admin/AddProduct" class="p-4">
+                    <form method="post" action="/Admin/AddProduct" class="p-4" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-floating mb-3">
@@ -38,24 +40,31 @@
                         <div class="row">
                             <div class="col-md-8">
                                 <div class="form-floating mb-3">
+
                                     <input asp-for="ImgUrl" class="form-control bg-dark text-light" id="floatingImgUrl" placeholder="ImgUrl">
                                     <label for="floatingImgUrl" class="text-light">Image URL</label>
+
                                 </div>
                             </div>
 
                             <div class="col-md-4">
+
                                 <div class="form-floating mb-3">
                                     <input asp-for="Price" class="form-control bg-dark text-light" id="floatingPrice" placeholder="Price">
                                     <label for="floatingPrice" class="text-light">Price</label>
                                 </div>
+
                             </div>
                         </div>
+
 
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
+
                                     <input asp-for="Quantity" class="form-control bg-dark text-light" id="floatingQuantity" placeholder="Quantity">
                                     <label for="floatingQuantity" class="text-light">Quantity</label>
+
                                 </div>
                             </div>
                             <div class="col-md-6">

@@ -14,6 +14,12 @@ namespace Food_Bistro.Controllers
             return View(productsRepo.getAllProduct());
         }
         
+        public IActionResult searchResult(string query)
+        {
+            ProductRepo productRepo = new ProductRepo();
+            return View("_searchResult", productRepo.getProductByName(query)); 
+        }
+
         public IActionResult ProductDetails()
         {
             return View();
