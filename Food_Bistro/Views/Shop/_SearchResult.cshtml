@@ -1,0 +1,27 @@
+﻿@using Food_Bistro.Models.Classes;
+@model Product
+
+@{
+    Layout = null;
+    ViewBag.Title = "Product-Details";
+}
+
+@if(Model!=null)
+{
+    <div class="col-6 col-md-3 mb-4 justify-content-center align-item-center">
+        <div class="card">
+            <img src="@Model.ImgUrl" class="card-img-top" style="height:350px; object-fit: cover;" alt="...">
+            <hr />
+            <div class="card-body p-2 text-center">
+                <h5 class="card-title fs-6">@Model.Name</h5>
+                <p class="card-text fs-6">Rs. @Model.Price</p>
+                <a asp-action="AddToCart" asp-controller="Cart" asp-route-id="@Model.Id" class="btn btn-primary btn-sm">Add To Cart</a>
+            </div>
+        </div>
+
+    </div>
+}
+else
+{
+    <p>No such product found</p>
+}
